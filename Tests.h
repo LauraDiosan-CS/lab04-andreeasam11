@@ -1,7 +1,7 @@
 #pragma once
 void testFilterProjects();
 void testFilterProjectsWithRepository();
-void testEliminateProjects();
-void testEliminateProjectsWithRepository();
+void testElimProjects();
+void testElimProjectsWithRepository();
 void testEntity();
 void testRepository();
