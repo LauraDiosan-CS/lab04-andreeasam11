@@ -6,8 +6,8 @@ int main() {
     cout << " start... " << endl;
     void testFilterProjects();
     void testFilterProjectsWithRepository();
-    void testEliminateProjects();
-    void testEliminateProjectsWithRepository();
+    void testElimProjects();
+    void testElimProjectsWithRepository();
     void testEntity();
     void testRepository();
     cout << " good job!! " << endl;
