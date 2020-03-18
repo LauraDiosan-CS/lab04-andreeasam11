@@ -77,7 +77,7 @@ void testEntity() {
     assert((p == q) == 0);
 }
 
-void testRepo() {
+void testRepository() {
     Project p1("sap", 7, 4);
     Project p2("okrp", 3, 0);
     Repository rep;
