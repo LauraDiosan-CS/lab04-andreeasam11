@@ -9,7 +9,7 @@ int main() {
     void testEliminateProjects();
     void testEliminateProjectsWithRepository();
     void testEntity();
-    void testRepo();
+    void testRepository();
     cout << " good job!! " << endl;
     return 0;
 }
