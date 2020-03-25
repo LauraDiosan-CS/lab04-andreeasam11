@@ -83,12 +83,12 @@ void UI::PrintMenu()
 				else cout << "Elemenul dat nu exista";
 				break;
 			}
-			
+
 			if (opt == 5) {
 				Project result[20];
 				cout << "k= "; cin >> k;
 				cout << "l= ";cin >> l;
-				s.filterProjects(k,l,result, resultLen);
+				s.filterProjects(k, l, result, resultLen);
 				for (int i = 0; i < resultLen; i++) {
 					cout << "GitPath: " << result[i].getGitPath() << endl;
 					cout << "Nr.de branches: " << result[i].getNoOfBranches() << endl;
@@ -99,7 +99,7 @@ void UI::PrintMenu()
 			}
 			if (opt == 6)
 			{
-			
+
 				s.elimProjects();
 				break;
 

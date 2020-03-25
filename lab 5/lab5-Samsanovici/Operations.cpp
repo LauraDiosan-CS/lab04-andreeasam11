@@ -1,7 +1,7 @@
 #include "Operations.h"
 #include "Repository.h"
 
-void filterProjects(Project projects[], int n, int k, int l, Project result[], int& resultLen)
+/*void filterProjects(Project projects[], int n, int k, int l, Project result[], int& resultLen)
 {
 	resultLen = 0;
 	for (int i = 0; i < n; i++)
@@ -37,4 +37,4 @@ void elimProjectsWithRepository(Repository repo, int n, Project result[], int& r
 	resultLen = 0;
 	Project* initialProjects = repo.getAll();
 	return elimProjects(initialProjects, n, result, resultLen);
-}
+}*/

@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{E5C06200-F46E-4337-9369-FA93A88EF7C3}</ProjectGuid>
+    <ProjectGuid>{5C1F5199-8C40-4689-9A8F-3C0A923D2DA6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My1234</RootNamespace>
+    <RootNamespace>lab5Samsanovici</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,8 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\ultima varianta\lab04-andreeasam11-master\Operations.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Operations.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Repository.cpp" />
     <ClCompile Include="RepoTeste.cpp" />
@@ -158,7 +158,7 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\ultima varianta\lab04-andreeasam11-master\Operations.h" />
+    <ClInclude Include="Operations.h" />
     <ClInclude Include="Project.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="RepoTeste.h" />

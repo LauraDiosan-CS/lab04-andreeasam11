@@ -50,6 +50,6 @@ void testElimProjects() {
 	s.addProject(p2);
 	s.addProject(p3);
 	s.elimProjects();
-	assert(*s.showProjects()==p1);
+	assert(*s.showProjects() == p1);
 
 }
