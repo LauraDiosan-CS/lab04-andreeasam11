@@ -1,6 +1,7 @@
 #pragma once
-void testAdd();
+/*void testAdd();
 void testGetAll();
 void testeConstructor();
 void testDelete();
-void testUpdate();
+void testUpdate();*/
+void testRepository();

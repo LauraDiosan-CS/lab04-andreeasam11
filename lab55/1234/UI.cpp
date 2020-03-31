@@ -1,5 +1,15 @@
 #include "UI.h"
+#include"Project.h"
 #include<iostream>
+using namespace std;
+
+UI::UI() {
+}
+
+
+UI::UI(const Service& ser) {
+	s= ser;
+}
 
 
 void UI::display() {
@@ -13,8 +23,7 @@ void UI::display() {
 	std::cout << "(5): Identificarea proiectelor care  au noOfBranches >=k si totalNoOfCommits>=l." << std::endl;
 	std::cout << "(6): Eliminarea exercitiilor care au noOfBranches * totalNoOfCommits==0" << std::endl;
 	std::cout << "(7):  UNDO." << std::endl;
-	std::cout << "(8):  REDO." << std::endl;
-	std::cout << "(9):  Exit." << std::endl;
+	std::cout << "(8):  Exit." << std::endl;
 }
 void UI::PrintMenu()
 {
@@ -36,15 +45,15 @@ void UI::PrintMenu()
 				cin >> totalNoOfCommits;
 				cout << endl;
 				Project p(gitPath, noOfBranches, totalNoOfCommits);
-				s.addProject(p);
+				s.addElem(gitPath,noOfBranches,totalNoOfCommits);
 				break;
 			}
 			if (opt == 2) {
-				for (int i = 0; i < s.dim(); i++)
+				for (int i = 0; i < s.getDim(); i++)
 				{
-					cout << "GitPath: " << s.showProjects()[i].getGitPath() << endl;
-					cout << "Nr.de branches: " << s.showProjects()[i].getNoOfBranches() << endl;
-					cout << "Nr. total de commits: " << s.showProjects()[i].getTotalNoOfCommits() << endl;
+					cout << "GitPath: " << s.getAll()[i].getGitPath() << endl;
+					cout << "Nr.de branches: " << s.getAll()[i].getNoOfBranches() << endl;
+					cout << "Nr. total de commits: " << s.getAll()[i].getTotalNoOfCommits() << endl;
 					cout << "-------------------------------" << endl;
 				}
 
@@ -53,34 +62,46 @@ void UI::PrintMenu()
 			}
 			if (opt == 3)
 			{
-				int elem;
-				cout << "Dati pozitia elementului pe care doriti sa-l stergeti: ";
-				cin >> elem;
-				if (elem < s.dim()) {
-
-					s.deleteProject(elem);
+				char* gitPath;
+				int noOfBranches, totalNoOfCommits;
+				gitPath = new char[20];
+				cout << "gitPath: ";cin >> gitPath;
+				cout << "noOfBranches: ";cin >> noOfBranches;
+				cout << " totalNoOfCommtis: ";cin >> totalNoOfCommits;
+				s.delProject(gitPath, noOfBranches, totalNoOfCommits);
+				if (gitPath != NULL)
+				{
+					delete[] gitPath;
+					gitPath = NULL;
 				}
-				else cout << "Elementul dat nu exista.";
+				cout << "Proiect sters!" << endl;
 				break;
 			}
 			if (opt == 4)
 			{
-				int elem;
-				cout << "Dati pozitia elementului pe care doriti sa-l modificati:  ";
-				cin >> elem;
-				if (elem < s.dim()) {
-					cout << "\n Update proiect: ";
-					cout << "\n Introduceti GitPath: ";
-					cin >> gitPath;
-					cout << " Introduceti nr.de branches: ";
-					cin >> noOfBranches;
-					cout << " Introduceti nr. total de commits:  ";
-					cin >> totalNoOfCommits;
-					cout << endl;
-
-					s.updateProject(elem, gitPath, noOfBranches, totalNoOfCommits);
+				char* gitPathOld = NULL;char* gitPathNew = NULL;
+				int noOfBranchesOld, noOfBranchesNew, totalNoOfCommitsOld, totalNoOfCommitsNew;
+				gitPathOld = new char[20];
+				gitPathNew = new char[20];
+				cout << "Obiectul care trebuie schimbat: " << endl;
+				cout << "gitPath: ";	cin >> gitPathOld;
+				cout << "noOfBranches: ";	cin >> noOfBranchesOld;
+				cout << "totalNoOfCommits: ";	cin >> totalNoOfCommitsOld;
+				cout << "Datele noi ale obiectului: " << endl;
+				cout << "gitPath: ";	cin >> gitPathNew;
+				cout << "noOfBranches: ";	cin >> noOfBranchesNew;
+				cout << "totalNoOfCommits: ";	cin >> totalNoOfCommitsNew;
+				s.updateProject(gitPathOld, noOfBranchesOld, totalNoOfCommitsOld, gitPathNew, noOfBranchesNew, totalNoOfCommitsNew);
+				if (gitPathOld != NULL)
+				{
+					delete[] gitPathOld;
+					gitPathOld = NULL;
 				}
-				else cout << "Elemenul dat nu exista";
+				if (gitPathNew != NULL)
+				{
+					delete[] gitPathNew;
+					gitPathNew = NULL;
+				}
 				break;
 			}
 			
@@ -101,16 +122,17 @@ void UI::PrintMenu()
 			{
 			
 				s.elimProjects();
+				cout << "Done!";
 				break;
 
 			}
 			if (opt == 7) {
-				//UNDO
+				s.undo();
+				break;
+				
 			}
+		
 			if (opt == 8) {
-				//REDO
-			}
-			if (opt == 9) {
 				cout << "Exit.";
 				exit(0);
 			}
@@ -127,5 +149,8 @@ void UI::PrintMenu()
 	} while (opt != 9);
 }
 
+UI::~UI() {
+
+}
 
 

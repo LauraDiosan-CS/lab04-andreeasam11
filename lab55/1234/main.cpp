@@ -12,16 +12,19 @@ int main()
 {
 	UI u;
 	teste();
-	testAdd();
+	testRepository();
+	testService();
+	
+	/*testAdd();
 	testGetAll();
 	testeConstructor();
 	testDelete();
+	testUpdate();*/
+	/*testAdd();
+	testDelete();
 	testUpdate();
-	testAddProject();
-	testDeleteProject();
-	testUpdateProject();
 	testFilterProjects();
-	testElimProjects();
+	testElimProjects();*/
 	u.PrintMenu();
 }
 

@@ -1,14 +1,16 @@
-#include "RepoTeste.h"
-#include "Repository.h"
+#include"RepoTeste.h"
+#include"Repository.h"
+#include"Project.h"
 #include<assert.h>
 #include<iostream>
-Repository r;
+using namespace std;
+/*Repository rep;
 void testAdd()
 {
-	assert(r.getSize() == 0);
+	assert(rep.getDim() == 0);
 	Project p((char*)"aaa", 3, 3);
-	r.addProject(p);
-	assert(r.getSize() == 1);
+	rep.addElem(p);
+	assert(rep.getDim()== 1);
 	cout << "Test passed \n";
 }
 void testGetAll()
@@ -16,10 +18,10 @@ void testGetAll()
 	Project* projects;
 	Project p1((char*)"aaa", 3, 3);
 	Project p2((char*)"bbb", 4, 2);
-	r.addProject(p2);
-	r.addProject(p1);
-	projects = r.getAll();
-	assert(r.getSize() == 3);
+	rep.addElem(p2);
+	rep.addElem(p1);
+	projects = rep.getAll();
+	assert(rep.getDim() == 3);
 	Project p3;
 	Project p4;
 	p3 = p1;
@@ -40,26 +42,47 @@ void testeConstructor()
 }
 void testDelete()
 {
+	Repository list;
 	Project* projects;
 	Project p1((char*)"aaa", 3, 3);
 	Project p2((char*)"bbb", 4, 2);
-	r.delElem1(2);
-	assert(r.getSize() == 2);
-	projects = r.getAll();
+	list.addElem(p1);
+	list.addElem(p2);
+	assert(list.getDim() == 2);
+	list.delProject(p2);
+	assert(list.getDim() == 1);
+	projects = list.getAll();
 	assert(projects[0] == p1);
-	assert(projects[1] == p2);
 	cout << "Test passed \n";
 }
 void testUpdate()
 {
 	Project* projects;
-	projects = r.getAll();
+	projects = rep.getAll();
 	Project p2((char*)"ccc", 3, 3);
 	Project p1((char*)"aaa", 3, 3);
 	assert(projects[0] == p1);
-	r.updateElem1(0, (char*)"ccc", 3, 3);
+	rep.updateElem(p2, (char*)"ccc", 3, 3);
 	assert(projects[0] == p2);
 	cout << "Test passed \n";
 
 
+}*/
+
+
+void testRepository() {
+	Repository list;
+	Project p1("aaa", 3, 5), p2("bbb", 7, 10), p3("ccc", 6, 12);
+	Project* test_list;
+	list.addElem(p1);
+	list.addElem(p2);
+	list.addElem(p3);
+	assert(list.getDim() == 3);
+	assert(list.getItemFromPos(0) == p1);
+	assert(list.findElem(p2) == 1);
+	list.delElem(p2);
+	assert(list.getDim() == 2);
+	test_list = list.getAll();
+	assert(test_list[0] == p1 and test_list[1] == p3);
+	cout << "Repository tests done!" << endl;
 }

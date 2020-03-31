@@ -7,7 +7,9 @@ public:
 
 	void display();
 	void PrintMenu();
-
+	UI();
+	UI(const Service&);
+	~UI();
 
 
 };

@@ -1,6 +1,12 @@
 #pragma once
-void testAddProject();
+/*void testAddProject();
 void testDeleteProject();
 void testUpdateProject();
 void testFilterProjects();
-void testElimProjects();
+void testElimProjects();*/
+/*void testAdd();
+void testDelete();
+void testUpdate();
+void testFilterProjects();
+void testElimProjects();*/
+void testService();

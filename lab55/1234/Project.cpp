@@ -1,141 +1,73 @@
 #include "Project.h"
-#include<cstring>
-#include <cstddef>
 #include <string.h>
-#include <ostream>
-#include <iostream>
-using namespace std;
-
-
-// Constructor
-// In: -
-// Out: an empty object of type Student
 
 Project::Project() {
-	this->gitPath = NULL;
-	this->noOfBranches = 0;
-	this->totalNoOfCommits = 0;
-}
-
-
-// Constructor with parameters
-// In: gitPath (string), noOfBranches (integer), age (integer)
-// Out: an object of type Project that contains the given info
-
-Project::Project(const char* gitPath, int noOfBranches, int totalNoOfCommits)
-{
-	this->gitPath = new char[strlen(gitPath) + 1];
-	strcpy_s(this->gitPath, 1 + strlen(gitPath), gitPath);
-	this->noOfBranches = noOfBranches;
-	this->totalNoOfCommits = totalNoOfCommits;
-}
-
-
-// Copy constructor
-// In: an object p of type Project
-// Out: another object of type Project that contains the same info as p
-
-Project::Project(const Project& p)
-{
-	this->gitPath = new char[strlen(p.gitPath) + 1];
-	strcpy_s(this->gitPath, sizeof this->gitPath, p.gitPath);
-	this->noOfBranches = p.noOfBranches;
-	this->totalNoOfCommits = p.totalNoOfCommits;
-}
-
-
-// Deconstructor
-// In: an object of type Project
-// Out: -
-
-Project::~Project()
-{
-	if (this->gitPath)
-	{
-		delete[] this->gitPath;
-		this->gitPath = NULL;
-	}
+	gitPath = NULL;
 	noOfBranches = 0;
 	totalNoOfCommits = 0;
 }
 
-
-// getter
-// In: an object of type Project
-// Out: gitPath of the project
-char* Project::getGitPath() {
-	return this->gitPath;
+Project::Project(const char* gitPath, int noOfBranches, int totalNoOfCommits) {
+	this->gitPath = new char[strlen(gitPath) + 1];
+	strcpy_s(this->gitPath, strlen(gitPath) + 1, gitPath);
+	this->noOfBranches = noOfBranches;
+	this->totalNoOfCommits = totalNoOfCommits;
 }
 
+Project::Project(const Project& p) {
+	this->gitPath = new char[strlen(p.gitPath) + 1];
+	strcpy_s(this->gitPath, strlen(p.gitPath) + 1, p.gitPath);
+	this->noOfBranches = p.noOfBranches;
+	this->totalNoOfCommits = p.totalNoOfCommits;
+}
 
-// getter
-// In: an object of type Project
-// Out: noOfBranches of the project
+char* Project::getGitPath() {
+	return gitPath;
+}
 
 int Project::getNoOfBranches() {
-	return this->noOfBranches;
+	return noOfBranches;
 }
-
-
-// getter
-// In: an object of type Project
-// Out: totalNoOfCommits of the project
 
 int Project::getTotalNoOfCommits() {
-	return this->totalNoOfCommits;
+	return totalNoOfCommits;
 }
 
-
-// setter
-// In: an object of type Project and gitPath (string)
-// Out: the same object with a new gitPath
-
-void Project::setGitPath(const char* n) {
-	if (gitPath) delete[]gitPath;
-	gitPath = new char[strlen(n) + 1];
-	strcpy_s(gitPath, strlen(n) + 1, n);
+void Project::setGitPath(char* gitPath) {
+	if (this->gitPath != NULL)
+		delete[] this->gitPath;
+	this->gitPath = new char[strlen(gitPath) + 1];
+	strcpy_s(this->gitPath, strlen(gitPath) + 1, gitPath);
 }
 
-
-// setter
-// In: an object of type Project and noOfBranches (integer)
-// Out: the same object with a new noOfBranches
-
-void Project::setNoOfBranches(int nr) {
-	this->noOfBranches = nr;
+void Project::setNoOfBranches(int noOfBranches) {
+	this->noOfBranches = noOfBranches;
 }
 
-
-// setter
-// In: an object of type Project and totalNoOfCommits (integer)
-// Out: the same object with a new totalNoOfCommits
-
-void Project::setTotalNoOfCommits(int nr) {
-	this->totalNoOfCommits = nr;
+void Project::setTotalNoOfCommits(int totalNoOfCommits) {
+	this->totalNoOfCommits = totalNoOfCommits;
 }
 
-
-// assignment operator
-// In: two objects of type Project (the current one, this, and p)
-// Out: the new state of the current object (this)
+Project::~Project() {
+	if (gitPath != NULL)
+		delete[] gitPath;
+	gitPath = NULL;
+	noOfBranches = -1;
+	totalNoOfCommits = -1;
+}
 
 Project& Project::operator=(const Project& p) {
-	this->setGitPath(p.gitPath);
-	this->setNoOfBranches(p.noOfBranches);
-	this->setTotalNoOfCommits(p.totalNoOfCommits);
+	if (this == &p)
+		return *this;
+	if (gitPath != NULL)
+		delete[] gitPath;
+	gitPath = new char[strlen(p.gitPath) + 1];
+	strcpy_s(gitPath, strlen(p.gitPath) + 1, p.gitPath);
+	noOfBranches = p.noOfBranches;
+	totalNoOfCommits = p.totalNoOfCommits;
 	return *this;
 }
 
-
-// comparator
-// In: two objects of type Project (this and p)
-// Out: true or false
-
 bool Project::operator==(const Project& p) {
-	return ((strcmp(this->gitPath, p.gitPath) == 0) && (this->noOfBranches == p.noOfBranches) && (this->totalNoOfCommits == p.totalNoOfCommits));
-}
-ostream& operator<<(ostream& os, const Project& p)
-{
-	os << p.gitPath << " " << p.noOfBranches << " " << p.totalNoOfCommits;
-	return os;
+	return ((strcmp(gitPath, p.gitPath) == 0) and (noOfBranches == p.noOfBranches)) and (totalNoOfCommits == p.totalNoOfCommits);
 }

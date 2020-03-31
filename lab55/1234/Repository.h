@@ -1,24 +1,24 @@
 #pragma once
 #include "Project.h"
 
-class Repository
-{
+class Repository {
 private:
 	Project projects[20];
-	int size;
-
+	Project undo[20][20];
+	int size, undo_size, undo_sizes[20];
 public:
 	Repository();
-	Repository(int size);
-	Repository(const Repository& rep);
-	void addProject(Project);
+	void addElem(Project);
 	int findElem(Project);
+	void addUndo();
+	void deleteUndo();
+	void undoFunction();
 	Project getItemFromPos(int);
-	int getSize();
-	void delElem1(int);
-	void delProject(Project p);
-	void updateElem1(int i, char* n, int, int);
+	void delElem(Project);
+	void updateElem(Project, char*, int, int);
+	Repository& operator=(const Repository&);
 	Project* getAll();
+	int getDim();
 	~Repository();
 
 };

@@ -1,8 +1,10 @@
 #include "TesteEntitate.h"
 #include "Project.h"
+#include<assert.h>
 #include<iostream>
+#include<string.h>
 using namespace std;
-void teste() {
+/*void teste() {
 	Project p1;	 //implicit constructor
 	p1.setGitPath((char*)"aaa");
 	p1.setNoOfBranches(3);
@@ -13,4 +15,17 @@ void teste() {
 	p1 = p1;			//(implicit) assign op => self assign
 	cout << "Test passed \n";
 
+}*/
+void teste() {
+	char* gitPath1 = new char[20];
+	strcpy_s(gitPath1, sizeof "aaa", "aaa");
+	Project p2(gitPath1, 3, 5);
+	Project p1;
+	assert(strcmp(p2.getGitPath(), gitPath1) == 0);
+	assert(p2.getNoOfBranches() == 3);
+	assert(p2.getTotalNoOfCommits() == 5);
+	assert(p1.getGitPath() == NULL);
+	p1 = p2;
+	assert(p1 == p2);
+	cout << "Project tests done!" << endl;
 }

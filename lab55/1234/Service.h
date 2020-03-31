@@ -1,28 +1,20 @@
 #pragma once
 #include "Project.h"
 #include "Repository.h"
+
 class Service {
 private:
-	Repository r;
+	Repository rep;
 public:
 	Service();
-	~Service();
-	void filterProjects(int k, int l, Project result[], int& resultLen);
-	void delProject(Project p);
-	Project* getAll();
+	Service(const Repository&);
+	int getDim();
+	void addElem(char*, int, int);
+	void delProject(char*, int, int);
+	void updateProject(char*, int, int, char*, int, int);
 	void elimProjects();
-	Project getItemFromPos(int i);
-	int gasireElement(const Project& p);
-	void addProject(Project p);
-	Project* showProjects();
-	void deleteProject(int i);
-	void updateProject(int i, char*, int, int);
-	int dim();
-	//void undo();
-
-
-
-
-
-
+	void filterProjects(int, int, Project[], int&);
+	void undo();
+	Project* getAll();
+	~Service();
 };
